@@ -656,14 +656,24 @@
     #define DEFAULT_Kd_LIST { 100.0, 100.0 }
   #else
     // Cartesio extruderV6 40W Normal
-    #define DEFAULT_Kp  18.0
-    #define DEFAULT_Ki   1.0
-    #define DEFAULT_Kd 100.0
+    //#define DEFAULT_Kp  18.0
+    //#define DEFAULT_Ki   1.0
+    //#define DEFAULT_Kd 100.0
+
+    // autotune dava cca 60,10,80 - 70,13,90
+    //M303 E0 S200 C8
+    //#define DEFAULT_Kp 69.01
+    //#define DEFAULT_Ki 13.16
+    //#define DEFAULT_Kd 90.45
+    //M303 E1 S200 C8
+    //#define DEFAULT_Kp 38.59
+    //#define DEFAULT_Ki 5.61
+    //#define DEFAULT_Kd 66.39
 
     // Cartesio extruderV6 40W Volcano
-    //#define DEFAULT_Kp  50.0
-    //#define DEFAULT_Ki   9.0
-    //#define DEFAULT_Kd  70.0
+    #define DEFAULT_Kp  50.0
+    #define DEFAULT_Ki   9.0
+    #define DEFAULT_Kd  70.0
 
     // Cartesio extruderV6 40W Cyclops
     //#define DEFAULT_Kp  18.0
