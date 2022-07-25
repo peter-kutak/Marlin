@@ -1163,7 +1163,9 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 71.128, 71.128, 640, 152 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 71.128, 71.128, 640, 152 }
+//neviem preco nejd 16microkrok
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.564, 35.564, 533.333, 152 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
