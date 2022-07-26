@@ -97,7 +97,7 @@
 //
 // Auto fans
 //
-#define AUTO_FAN_PIN                           7
+#define AUTO_FAN_PIN                           10 //vsetky extruderi maju spolocny pin
 #ifndef E0_AUTO_FAN_PIN
   #define E0_AUTO_FAN_PIN           AUTO_FAN_PIN
 #endif
