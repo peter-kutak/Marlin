@@ -756,11 +756,11 @@
 #if ENABLED(PIDTEMPBED)
   //#define MIN_BED_POWER 0
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
-
+ 
   // 24V 500W silicone heater on to 4mm glass CartesioW
-  #define DEFAULT_bedKp 390
-  #define DEFAULT_bedKi 70
-  #define DEFAULT_bedKd 546
+  //#define DEFAULT_bedKp 390
+  //#define DEFAULT_bedKi 70
+  //#define DEFAULT_bedKd 546
 
   // 24V 250W silicone heater on to 4mm glass CartesioM
   //#define DEFAULT_bedKp 303
@@ -768,6 +768,11 @@
   //#define DEFAULT_bedKd 539
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
+  //podlozky mam zapojene v serii
+  //M303 E-1 S60 C8
+  #define DEFAULT_bedKp 41.31
+  #define DEFAULT_bedKi 6.00
+  #define DEFAULT_bedKd 189.51
 #endif // PIDTEMPBED
 
 //===========================================================================
