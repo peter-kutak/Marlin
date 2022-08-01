@@ -668,10 +668,10 @@
     //#define DEFAULT_Ki   1.0
     //#define DEFAULT_Kd 100.0
 
-    //novy hotend j v6 autotune
-    #define DEFAULT_Kp 18.98
-    #define DEFAULT_Ki 2.41
-    #define DEFAULT_Kd 37.32
+    //novy J-hotend v6 autotune
+    //#define DEFAULT_Kp 18.98
+    //#define DEFAULT_Ki 2.41
+    //#define DEFAULT_Kd 37.32
 
     // autotune dava cca 60,10,80 - 70,13,90
     //M303 E0 S200 C8
@@ -679,9 +679,9 @@
     //#define DEFAULT_Ki 13.16
     //#define DEFAULT_Kd 90.45
     //M303 E1 S200 C8
-    #define DEFAULT_Kp 38.59
-    #define DEFAULT_Ki 5.61
-    #define DEFAULT_Kd 66.39
+    //#define DEFAULT_Kp 38.59
+    //#define DEFAULT_Ki 5.61
+    //#define DEFAULT_Kd 66.39
 
     // Cartesio extruderV6 40W Volcano
     //#define DEFAULT_Kp  50.0
