@@ -132,8 +132,8 @@
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_2 -1
-//#define BAUDRATE_2 250000   // Enable to override BAUDRATE
+#define SERIAL_PORT_2 3
+#define BAUDRATE_2 115200   // Enable to override BAUDRATE
 
 /**
  * Select a third serial port on the board to use for communication with the host.
@@ -141,7 +141,7 @@
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
 //#define SERIAL_PORT_3 1
-//#define BAUDRATE_3 250000   // Enable to override BAUDRATE
+//#define BAUDRATE_3 115200   // Enable to override BAUDRATE
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -168,6 +168,14 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
+// realne mam STK672-080
+// M1,M2 1,2,4,8 
+// M3 - ci reagovat nabeznu/zavernu hranu step signalu, alebo len ba nabeznu hranu
+//CLK (phase switching clock)
+//    Input frequency range: DC to 50 kHz
+//    Minimum pulse width: 10 μs
+//    Duty: 40 to 60% (However, the minimum pulse width takes precedence when M3 is high.)
+//TB6560 je z peddefinovanych najpomalsi => splna potrebne casovanie
 #define X_DRIVER_TYPE  TB6560
 #define Y_DRIVER_TYPE  TB6560
 #define Z_DRIVER_TYPE  TB6560
@@ -542,7 +550,7 @@
  *
  */
 #define TEMP_SENSOR_0 -1
-#define TEMP_SENSOR_1 -1
+#define TEMP_SENSOR_1 -1 //realne tam mam AD597A
 #define TEMP_SENSOR_2 1
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
@@ -645,20 +653,25 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
+  #define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with G-code: M301 E[extruder number, 0-2]
 
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify up to one value per hotend here, according to your setup.
     // If there are fewer values, the last one applies to the remaining hotends.
-    #define DEFAULT_Kp_LIST {  18.0,  18.0 }
-    #define DEFAULT_Ki_LIST {   1.0,   1.0 }
-    #define DEFAULT_Kd_LIST { 100.0, 100.0 }
+    #define DEFAULT_Kp_LIST {  19.0,  40.0 }
+    #define DEFAULT_Ki_LIST {   2.4,   6.0 }
+    #define DEFAULT_Kd_LIST {  37.0,  70.0 }
   #else
     // Cartesio extruderV6 40W Normal
     //#define DEFAULT_Kp  18.0
     //#define DEFAULT_Ki   1.0
     //#define DEFAULT_Kd 100.0
+
+    //novy hotend j v6 autotune
+    #define DEFAULT_Kp 18.98
+    #define DEFAULT_Ki 2.41
+    #define DEFAULT_Kd 37.32
 
     // autotune dava cca 60,10,80 - 70,13,90
     //M303 E0 S200 C8
@@ -666,14 +679,14 @@
     //#define DEFAULT_Ki 13.16
     //#define DEFAULT_Kd 90.45
     //M303 E1 S200 C8
-    //#define DEFAULT_Kp 38.59
-    //#define DEFAULT_Ki 5.61
-    //#define DEFAULT_Kd 66.39
+    #define DEFAULT_Kp 38.59
+    #define DEFAULT_Ki 5.61
+    #define DEFAULT_Kd 66.39
 
     // Cartesio extruderV6 40W Volcano
-    #define DEFAULT_Kp  50.0
-    #define DEFAULT_Ki   9.0
-    #define DEFAULT_Kd  70.0
+    //#define DEFAULT_Kp  50.0
+    //#define DEFAULT_Ki   9.0
+    //#define DEFAULT_Kd  70.0
 
     // Cartesio extruderV6 40W Cyclops
     //#define DEFAULT_Kp  18.0
@@ -1179,8 +1192,9 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 71.128, 71.128, 640, 152 }
-//neviem preco nejd 16microkrok
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.564, 35.564, 533.333, 152 }
+//16microkrok je realizovany reagovanim na nabeznu aj zavernu hranu (M3) takze to nevstupuje do vypoctu
+//extruder mam prepnuty na 32mikrokrok co je asi zbytocne vela a 0.5 tryska nestihala?
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.564, 35.564, 533.333, 4050 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1665,10 +1679,10 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
-#define INVERT_E1_DIR false
-#define INVERT_E2_DIR false
-#define INVERT_E3_DIR false
+#define INVERT_E0_DIR true
+#define INVERT_E1_DIR true
+#define INVERT_E2_DIR true
+#define INVERT_E3_DIR true
 #define INVERT_E4_DIR false
 #define INVERT_E5_DIR false
 #define INVERT_E6_DIR false
@@ -1706,8 +1720,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 435
-#define Y_BED_SIZE 270
+#define X_BED_SIZE 430
+#define Y_BED_SIZE 280
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1715,7 +1729,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 400
+#define Z_MAX_POS 150
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0
