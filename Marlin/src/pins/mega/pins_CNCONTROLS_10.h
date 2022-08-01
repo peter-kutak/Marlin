@@ -54,7 +54,7 @@
 
 #define E0_STEP_PIN                           29
 #define E0_DIR_PIN                            28
-#define E0_ENABLE_PIN                          3
+#define E0_ENABLE_PIN                         19
 
 #define E1_STEP_PIN                           61
 #define E1_DIR_PIN                            62
@@ -98,6 +98,7 @@
 // Auto fans
 //
 #define AUTO_FAN_PIN                           10 //vsetky extruderi maju spolocny pin
+                                                  // na spodnej strane pcb je rozpojena prepojka a fan neriadi tento pin ale opamp a bodytemp
 #ifndef E0_AUTO_FAN_PIN
   #define E0_AUTO_FAN_PIN           AUTO_FAN_PIN
 #endif
@@ -158,7 +159,7 @@
 //#define UI1                                 31
 //#define UI2                                 22
 
-
-#define STAT_LED_BLUE_PIN                     -1
+//biele ledky extruderov
+#define STAT_LED_BLUE_PIN                     32
 //cervene podsvietenie rotacneho gombika
 #define STAT_LED_RED_PIN                      31
