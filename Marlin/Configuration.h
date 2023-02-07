@@ -245,7 +245,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 2
+#define EXTRUDERS 1
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -619,6 +619,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
+//odpojeny kabel dava 480-486degC
 #define HEATER_0_MAXTEMP 415
 #define HEATER_1_MAXTEMP 415
 #define HEATER_2_MAXTEMP 415
@@ -654,7 +655,7 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  #define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
+  //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with G-code: M301 E[extruder number, 0-2]
 
   #if ENABLED(PID_PARAMS_PER_HOTEND)
@@ -685,9 +686,9 @@
     //#define DEFAULT_Kd 66.39
 
     // Cartesio extruderV6 40W Volcano
-    //#define DEFAULT_Kp  50.0
-    //#define DEFAULT_Ki   9.0
-    //#define DEFAULT_Kd  70.0
+    #define DEFAULT_Kp  50.0
+    #define DEFAULT_Ki   9.0
+    #define DEFAULT_Kd  70.0
 
     // Cartesio extruderV6 40W Cyclops
     //#define DEFAULT_Kp  18.0
