@@ -227,6 +227,8 @@
 // Other ATmega1280, ATmega2560
 //
 
+#elif MB(CNCONTROLS_10)
+  #include "mega/pins_CNCONTROLS_10.h"          // ATmega2560, ATmega1280                 env:mega2560 
 #elif MB(CNCONTROLS_11)
   #include "mega/pins_CNCONTROLS_11.h"              // ATmega2560, ATmega1280               env:mega2560 env:mega1280
 #elif MB(CNCONTROLS_12)
