@@ -137,7 +137,7 @@
 // LCD / Controller
 //
 #if HAS_WIRED_LCD
-  #define BEEPER_PIN                          -1 // 8  je to otravne
+  #define BEEPER_PIN                          8
 
   #define BTN_EN1                             23
   #define BTN_EN2                             25
