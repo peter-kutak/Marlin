@@ -1196,7 +1196,7 @@
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 71.128, 71.128, 640, 152 }
 //16microkrok je realizovany reagovanim na nabeznu aj zavernu hranu (M3) takze to nevstupuje do vypoctu
 //extruder mam prepnuty na 32mikrokrok co je asi zbytocne vela a 0.5 tryska nestihala?
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.564, 35.564, 533.333, 4050 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 35.564, 35.564, 533.333, 1012.5 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
