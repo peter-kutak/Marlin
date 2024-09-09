@@ -90,15 +90,21 @@
 #define HEATER_3_PIN                          46
 #define HEATER_BED_PIN                        12
 
+// toto je ventilator na chladenie modelu
 #ifndef FAN0_PIN
-  //#define FAN0_PIN                            7  // common PWM pin for all tools
+  #define FAN0_PIN                            10
 #endif
+
+//pin10 je vyvedeny na vsetky extruderi, maju jeden spolocny pin
+// na spodnej strane pcb je rozpojena prepojka a FAN vystup neriadi tento pin ale opamp a bodytemp
+// tento pin sa da pouzit aj regulaciu nastrojov/frezky/laseru
 
 //
 // Auto fans
+// logicky su toto ventilatory na chladenie extruderov,
+// ja ich mam riadene termistorom takze to nepotrebujem
 //
-#define AUTO_FAN_PIN                           10 //vsetky extruderi maju spolocny pin
-                                                  // na spodnej strane pcb je rozpojena prepojka a fan neriadi tento pin ale opamp a bodytemp
+#define AUTO_FAN_PIN                           -1 
 #ifndef E0_AUTO_FAN_PIN
   #define E0_AUTO_FAN_PIN           AUTO_FAN_PIN
 #endif
